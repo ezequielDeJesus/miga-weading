@@ -4,7 +4,7 @@
  * Falls back to Canvas simulation if no API key is configured.
  */
 
-const MODEL_IMAGE = 'gemini-2.0-flash-exp';
+const MODEL_IMAGE = 'gemini-2.0-flash';
 const MODEL_TEXT = 'gemini-2.5-flash';
 
 function parseDataUrl(dataUrl) {
@@ -61,9 +61,12 @@ export const NanoBananaAI = {
             const bride = parseDataUrl(brideSrc);
             const dress = parseDataUrl(dressSrc);
 
-            const parts = [
+            const contents = [
                 {
-                    text: `ACT AS A PHOTOREALISTIC IMAGE COMPOSITOR.
+                    role: "user",
+                    parts: [
+                        {
+                            text: `ACT AS A PHOTOREALISTIC IMAGE COMPOSITOR.
                     
                     TASK: Dress the woman from Image 1 with the EXACT dress from Image 2.
                     
@@ -74,12 +77,14 @@ export const NanoBananaAI = {
                     4. ANATOMICAL GARMENT FITTING: The dress must wrap around her body following her pose in Image 1, but without distorting the dress design.
                     5. NO RE-IMAGINING: Ensure the final output looks like a professional high-end fashion composite, not an AI generation. 
                     Add a subtle watermark "Nano Banana AI • High Fidelity" to the bottom left.`
-                },
-                { inlineData: { mimeType: bride.mimeType, data: bride.data } },
-                { inlineData: { mimeType: dress.mimeType, data: dress.data } }
+                        },
+                        { inlineData: { mimeType: bride.mimeType, data: bride.data } },
+                        { inlineData: { mimeType: dress.mimeType, data: dress.data } }
+                    ]
+                }
             ];
 
-            const result = await callGemini(parts, MODEL_IMAGE);
+            const result = await callGemini(contents, '', MODEL_IMAGE);
             console.log('✅ NanoBanana: Imagem gerada com sucesso!');
             return result;
         } catch (error) {
@@ -158,9 +163,12 @@ export const NanoBananaAI = {
             };
             const styleDesc = styleDescriptions[style] || 'elegant wedding';
 
-            const parts = [
+            const contents = [
                 {
-                    text: `You are an expert wedding interior designer and AI image editor. 
+                    role: "user",
+                    parts: [
+                        {
+                            text: `You are an expert wedding interior designer and AI image editor. 
                     Transform this venue/room photo into a stunning ${styleDesc} wedding decoration scene.
                     Add ${elementsList} that blend naturally with the existing space.
                     
@@ -171,11 +179,13 @@ export const NanoBananaAI = {
                     Make the lighting, colors and atmosphere match the style and user requests.
                     The result should look like a real professionally decorated wedding venue.
                     Add a subtle watermark "Nano Banana AI • Cenário: ${style}" at the bottom left.`
-                },
-                { inlineData: { mimeType: room.mimeType, data: room.data } }
+                        },
+                        { inlineData: { mimeType: room.mimeType, data: room.data } }
+                    ]
+                }
             ];
 
-            const result = await callGemini(parts, MODEL_IMAGE);
+            const result = await callGemini(contents, '', MODEL_IMAGE);
             console.log('✅ NanoBanana: Decoração gerada com sucesso via Gemini!');
             return result;
         } catch (error) {
