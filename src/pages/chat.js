@@ -63,15 +63,16 @@ export async function initChat() {
             typingIndicator.classList.add('hidden');
             addMessage(response, 'miga');
 
-            // Persist to Supabase
-            db.create('chat_messages', {
+            // Persist to Supabase (Optional, doesn't block the UI)
+            db.insert('chat_messages', {
                 role: 'user',
                 content: text
-            });
-            db.create('chat_messages', {
-                role: 'model',
+            }).catch(e => console.warn("Erro ao salvar mensagem do usuário:", e));
+
+            db.insert('chat_messages', {
+                role: 'assistant',
                 content: response
-            });
+            }).catch(e => console.warn("Erro ao salvar resposta da Miga:", e));
 
         } catch (error) {
             console.error("Erro na Miga:", error);
