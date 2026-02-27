@@ -25,14 +25,20 @@ async function callGemini(contents, systemPrompt = '', model = MODEL_IMAGE) {
 
     console.log(`🚀 NanoBanana: Calling ${model} via Supabase Edge Function...`);
 
-    const { data, error } = await supabase.functions.invoke('gemini-api', {
+    const response = await supabase.functions.invoke('gemini-api', {
         body: { contents, systemPrompt, model }
     });
 
-    if (error) {
-        console.error('❌ Edge Function Error:', error);
-        throw new Error(error.message || 'Erro na Edge Function do Supabase');
+    if (response.error) {
+        console.error('❌ Edge Function Error:', response.error);
+        // Tenta extrair detalhes se for um erro de cota (429)
+        if (response.error.status === 429) {
+            throw new Error('Limite de uso atingido (Muitos pedidos seguidos). Por favor, aguarde 60 segundos e tente novamente, maravilhosa! ✨');
+        }
+        throw new Error(response.error.message || 'Erro na Edge Function do Supabase');
     }
+
+    const data = response.data;
 
     if (model === MODEL_IMAGE || model.includes('2.0') && !model.includes('text')) {
         const imagePart = data?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
