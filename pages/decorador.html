@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miga - Cenário Dos Sonhos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body class="dot-grid overflow-x-hidden">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7]">
+        <div id="header-placeholder" data-title="Cenário Dos Sonhos"></div>
+
+        <main id="main-content" class="flex-1 p-4 pb-32">
+            <div class="px-2 pt-4 mb-8">
+                <h2 class="font-handwritten text-5xl text-text-main">Crie o seu</h2>
+                <h2 class="font-handwritten text-5xl text-text-main -mt-2">Cenário Perfeito</h2>
+                <p class="font-sketch text-lg text-text-main/60 mt-2">Escolha seu estilo e deixe a Nano Banana fazer a
+                    mágica.</p>
+            </div>
+
+            <!-- Room Upload -->
+            <section class="px-2 mb-10">
+                <label class="font-black text-[9px] uppercase tracking-widest opacity-60 ml-1 mb-3 block">Seu
+                    Ambiente</label>
+                <div id="room-upload-container"
+                    class="w-full aspect-video rounded-3xl border-2 border-dashed border-primary/20 bg-[#eeada7] flex flex-col items-center justify-center cursor-pointer hover:bg-[#eeada7]/90 transition-all group overflow-hidden relative shadow-sm">
+                    <span
+                        class="material-symbols-outlined text-white/50 text-4xl group-hover:scale-110 transition-transform mb-2">add_location_alt</span>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-white/50">Foto do Ambiente</p>
+                    <img id="room-preview" class="hidden absolute inset-0 w-full h-full object-cover">
+                    <input type="file" id="room-input" accept="image/*" class="hidden">
+                </div>
+            </section>
+
+            <!-- Style Selection -->
+            <section class="px-2 mb-10">
+                <h3 class="font-black text-[10px] tracking-[0.2em] uppercase opacity-60 mb-6 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">palette</span> Estilo Geral
+                </h3>
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+                    <button
+                        class="style-chip flex-shrink-0 px-6 py-3 bg-primary text-white text-[10px] font-black uppercase rounded-lg shadow-lg border-2 border-primary scale-105 transition-all"
+                        data-style="clássico">Clássico</button>
+                    <button
+                        class="style-chip flex-shrink-0 px-6 py-3 bg-white text-text-main border-2 border-black/5 text-[10px] font-black uppercase rounded-lg hover:border-primary/20 transition-all"
+                        data-style="luxuoso">Luxuoso</button>
+                    <button
+                        class="style-chip flex-shrink-0 px-6 py-3 bg-white text-text-main border-2 border-black/5 text-[10px] font-black uppercase rounded-lg hover:border-primary/20 transition-all"
+                        data-style="minimalista">Minimalista</button>
+                </div>
+            </section>
+
+            <!-- Elements Selection -->
+            <section class="px-2 mb-10">
+                <h3 class="font-black text-[10px] tracking-[0.2em] uppercase opacity-60 mb-6">Elementos de Destaque</h3>
+                <div class="grid grid-cols-4 gap-3">
+                    <button
+                        class="element-toggle size-16 bg-white border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-1 group transition-all"
+                        data-element="flores">
+                        <span
+                            class="material-symbols-outlined text-xl opacity-40 group-hover:scale-110 transition-transform">local_florist</span>
+                        <span class="text-[7px] font-bold uppercase tracking-widest opacity-40">Flores</span>
+                    </button>
+                    <button
+                        class="element-toggle size-16 bg-white border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-1 group transition-all"
+                        data-element="velas">
+                        <span
+                            class="material-symbols-outlined text-xl opacity-40 group-hover:scale-110 transition-transform">flare</span>
+                        <span class="text-[7px] font-bold uppercase tracking-widest opacity-40">Velas</span>
+                    </button>
+                    <button
+                        class="element-toggle size-16 bg-white border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-1 group transition-all"
+                        data-element="mesas">
+                        <span
+                            class="material-symbols-outlined text-xl opacity-40 group-hover:scale-110 transition-transform">table_restaurant</span>
+                        <span class="text-[7px] font-bold uppercase tracking-widest opacity-40">Mesas</span>
+                    </button>
+                    <button
+                        class="element-toggle size-16 bg-white border border-black/5 rounded-2xl flex flex-col items-center justify-center gap-1 group transition-all"
+                        data-element="cadeiras">
+                        <span
+                            class="material-symbols-outlined text-xl opacity-40 group-hover:scale-110 transition-transform">chair_alt</span>
+                        <span class="text-[7px] font-bold uppercase tracking-widest opacity-40">Cadeiras</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Custom Prompt -->
+            <section class="px-2 mb-12">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-sm opacity-40">edit_note</span>
+                    <label class="font-black text-[10px] tracking-[0.2em] uppercase opacity-60">Personalização
+                        Extra</label>
+                </div>
+                <textarea id="custom-prompt"
+                    placeholder="Descreva mais detalhes (ex: 'Pétalas de rosa branca no chão')..."
+                    class="w-full bg-white border border-black/5 rounded-2xl p-4 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder:opacity-30 min-h-[100px]"></textarea>
+            </section>
+
+            <!-- Generate Button -->
+            <div class="px-2 mb-16">
+                <button id="btn-generate"
+                    class="w-full bg-[#225373] text-white py-5 rounded-2xl shadow-xl flex items-center justify-center gap-3 font-black text-sm uppercase tracking-widest active:scale-95 transition-all opacity-50 cursor-not-allowed pointer-events-none">
+                    <span class="material-symbols-outlined">auto_fix_high</span>
+                    <span>Gerar Ambientação</span>
+                </button>
+            </div>
+
+            <!-- History -->
+            <section id="decor-history" class="px-2">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="font-black text-[10px] tracking-[0.3em] uppercase opacity-40">Minhas Decorações</h3>
+                    <div class="h-px flex-1 bg-black/5 mx-4"></div>
+                </div>
+                <div id="decor-list" class="space-y-12 pb-10">
+                    <!-- Dynamic Content -->
+                </div>
+            </section>
+
+            <!-- Loading Overlay -->
+            <div id="ai-overlay"
+                class="fixed inset-0 bg-primary/95 backdrop-blur-md z-[60] hidden flex flex-col items-center justify-center text-white p-10 text-center">
+                <div class="relative size-32 mb-8">
+                    <div class="absolute inset-0 border-8 border-white/10 rounded-full"></div>
+                    <div class="absolute inset-0 border-8 border-t-white rounded-full animate-spin"></div>
+                    <span
+                        class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-5xl animate-pulse">architecture</span>
+                </div>
+                <h3 class="font-handwritten text-5xl mb-4">Arquitetando Sonhos...</h3>
+                <p class="font-sketch text-xl opacity-60 leading-relaxed max-w-xs">A IA Nano Banana está traduzindo seus
+                    desejos em um cenário cinematográfico.</p>
+            </div>
+        </main>
+
+        <div id="nav-placeholder"></div>
+    </div>
+
+    <style>
+        .element-toggle.active {
+            border-color: var(--color-primary);
+            background-color: rgba(34, 83, 115, 0.05);
+        }
+
+        .element-toggle.active span {
+            color: var(--color-primary);
+            opacity: 1;
+        }
+    </style>
+
+    <script type="module">
+        import { renderHeader } from '/src/components/AppHeader.js';
+        import { renderBottomNav } from '/src/components/BottomNav.js';
+        import { NanoBananaAI } from '/src/utils/nanoBanana.js';
+        import { shareImage } from '/src/utils/share.js';
+
+        document.getElementById('header-placeholder').innerHTML = renderHeader('Cenário Dos Sonhos');
+        document.getElementById('nav-placeholder').innerHTML = renderBottomNav();
+
+        const roomContainer = document.getElementById('room-upload-container');
+        const roomInput = document.getElementById('room-input');
+        const roomPreview = document.getElementById('room-preview');
+        const styleChips = document.querySelectorAll('.style-chip');
+        const elementToggles = document.querySelectorAll('.element-toggle');
+        const btnGenerate = document.getElementById('btn-generate');
+        const aiOverlay = document.getElementById('ai-overlay');
+        const decorList = document.getElementById('decor-list');
+
+        let state = { room: null, style: 'clássico', elements: [] };
+
+        roomContainer.onclick = () => roomInput.click();
+        roomInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    state.room = event.target.result;
+                    roomPreview.src = state.room;
+                    roomPreview.classList.remove('hidden');
+                    checkReady();
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        styleChips.forEach(chip => {
+            chip.onclick = () => {
+                styleChips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-white', 'shadow-lg', 'border-primary', 'scale-105');
+                    c.classList.add('bg-white', 'text-text-main', 'border-black/5');
+                });
+                chip.classList.remove('bg-white', 'text-text-main', 'border-black/5');
+                chip.classList.add('bg-primary', 'text-white', 'shadow-lg', 'border-primary', 'scale-105');
+                state.style = chip.dataset.style;
+            };
+        });
+
+        elementToggles.forEach(toggle => {
+            toggle.onclick = () => {
+                toggle.classList.toggle('active');
+                const el = toggle.dataset.element;
+                if (state.elements.includes(el)) state.elements = state.elements.filter(e => e !== el);
+                else state.elements.push(el);
+            };
+        });
+
+        const checkReady = () => {
+            if (state.room) btnGenerate.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+        };
+
+        btnGenerate.onclick = async () => {
+            aiOverlay.classList.remove('hidden');
+
+            // Artificial delay to feel like "AI Processing"
+            const messages = [
+                "Lendo volumetria do espaço...",
+                "Projetando sombras de móveis...",
+                "Ajustando paleta cromática...",
+                "Finalizando renderização HD..."
+            ];
+
+            let i = 0;
+            const msgEl = aiOverlay.querySelector('p');
+            const interval = setInterval(() => {
+                msgEl.innerText = messages[i % messages.length];
+                i++;
+            }, 800);
+
+            // Generate the decorated image using Nano Banana AI
+            const extraPrompt = document.getElementById('custom-prompt').value;
+            const resultImg = await NanoBananaAI.simulateDecoration(state.room, state.style, state.elements, extraPrompt);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                aiOverlay.classList.add('hidden');
+                saveDecor(resultImg, state.style, state.elements);
+                // Reset
+                state.room = null;
+                roomPreview.classList.add('hidden');
+                btnGenerate.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                document.getElementById('custom-prompt').value = '';
+                elementToggles.forEach(t => t.classList.remove('active'));
+            }, 3200);
+        };
+
+        const saveDecor = (resultImg, style, elements) => {
+            const history = JSON.parse(localStorage.getItem('miga_decor') || '[]');
+            const newEntry = {
+                id: Date.now(),
+                img: resultImg,
+                description: `Ambiente ${style} com ${elements.join(', ') || 'detalhes curados'}.`,
+                date: new Date().toLocaleDateString('pt-BR')
+            };
+            history.unshift(newEntry);
+            localStorage.setItem('miga_decor', JSON.stringify(history));
+            renderDecorations();
+        };
+
+        const renderDecorations = () => {
+            const history = JSON.parse(localStorage.getItem('miga_decor') || '[]');
+            decorList.innerHTML = history.map(item => `
+                <div class="polaroid-rose animate-in zoom-in duration-500 relative">
+                    <div class="absolute -top-3 -right-3 flex gap-2 z-30">
+                        <button class="size-10 bg-white text-[#225373] rounded-full shadow-xl flex items-center justify-center border border-primary/10 active:scale-90 transition-transform" onclick="shareDecor('${item.id}')">
+                            <span class="material-symbols-outlined text-sm">share</span>
+                        </button>
+                        <button class="size-10 bg-white text-red-500 rounded-full shadow-xl flex items-center justify-center border border-red-50 active:scale-90 transition-transform" onclick="deleteDecor(${item.id})">
+                            <span class="material-symbols-outlined text-sm">delete</span>
+                        </button>
+                    </div>
+                    <div class="aspect-video bg-white rounded-sm overflow-hidden mb-6 shadow-inner ring-4 ring-black/5">
+                        <img src="${item.img}" class="w-full h-full object-cover text-xs" alt="Cenário gerado">
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-handwritten text-2xl text-[#5f5f5f] leading-tight">Nosso grande cenário...</p>
+                        <p class="text-[8px] font-black uppercase text-[#5f5f5f]/60 tracking-[0.2em] leading-relaxed">${item.description}</p>
+                        <div class="flex justify-end pt-2">
+                            <span class="text-[7px] font-bold text-[#5f5f5f]/40 uppercase tracking-[0.3em]">${item.date}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        window.deleteDecor = (id) => {
+            const history = JSON.parse(localStorage.getItem('miga_decor') || '[]');
+            localStorage.setItem('miga_decor', JSON.stringify(history.filter(h => h.id !== id)));
+            renderDecorations();
+        };
+
+        window.shareDecor = async (id) => {
+            const history = JSON.parse(localStorage.getItem('miga_decor') || '[]');
+            const item = history.find(h => h.id == id);
+            if (item) {
+                await shareImage(item.img, 'Miga - Cenário dos Sonhos', `Confira este cenário incrível que criei para o meu casamento na Miga!`, `cenario-miga-${id}.png`);
+            }
+        };
+
+        renderDecorations();
+    </script>
+</body>
+
+</html>

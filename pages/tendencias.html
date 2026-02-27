@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miga - Tendências Wedding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <style>
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Carousel Styles */
+        .trend-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .trend-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .trend-card {
+            min-width: 85%;
+            scroll-snap-align: center;
+        }
+    </style>
+</head>
+
+<body class="bg-[#fdfbf7] overflow-x-hidden" style="color: #5f5f5f;">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7] relative pb-28">
+
+        <!-- Header -->
+        <div id="header-placeholder" data-title="Tendências"></div>
+
+        <main class="flex-1 px-5 pt-8">
+            <!-- New Subtitle -->
+            <div class="text-center mb-10">
+                <p class="font-handwritten text-xl text-[#eeada7] italic">
+                    Fique por dentro de Dicas e Tendências do mundo Wedding
+                </p>
+            </div>
+
+            <div id="trends-content" class="space-y-12">
+                <!-- Loading State -->
+                <div id="loading-trends" class="flex flex-col items-center justify-center pt-20 space-y-6">
+                    <div class="relative size-20">
+                        <div class="absolute inset-0 border-4 border-[#eeada7]/20 rounded-full"></div>
+                        <div class="absolute inset-0 border-4 border-t-[#eeada7] rounded-full animate-spin"></div>
+                    </div>
+                    <p class="font-handwritten text-2xl text-[#eeada7] animate-pulse">Buscando o que há de mais fresh...
+                    </p>
+                </div>
+
+                <!-- Carousel container (trends category) -->
+                <section id="section-trends" class="hidden">
+                    <h3
+                        class="font-black text-[10px] uppercase tracking-[0.3em] opacity-40 mb-6 flex items-center gap-2 text-[#5f5f5f]">
+                        <span class="material-symbols-outlined text-sm">auto_awesome</span> Tendências
+                    </h3>
+                    <div class="relative group">
+                        <div id="carousel-container" class="trend-carousel scroll-smooth">
+                            <!-- Cards injected here -->
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <div class="flex justify-center gap-4 mt-2">
+                            <button id="prev-trend"
+                                class="size-10 rounded-full bg-white shadow-md border border-black/5 flex items-center justify-center text-[#eeada7] active:scale-95 transition-all">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <button id="next-trend"
+                                class="size-10 rounded-full bg-white shadow-md border border-black/5 flex items-center justify-center text-[#eeada7] active:scale-95 transition-all">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dicas Sections -->
+                <section id="section-dicas" class="hidden space-y-10">
+                    <div>
+                        <h3
+                            class="font-black text-[10px] uppercase tracking-[0.3em] opacity-40 mb-6 flex items-center gap-2 text-[#5f5f5f]">
+                            <span class="material-symbols-outlined text-sm">restaurant</span> Comidas em Alta
+                        </h3>
+                        <div id="food-container" class="space-y-4 text-[#5f5f5f]"></div>
+                    </div>
+
+                    <div>
+                        <h3
+                            class="font-black text-[10px] uppercase tracking-[0.3em] opacity-40 mb-6 flex items-center gap-2 text-[#5f5f5f]">
+                            <span class="material-symbols-outlined text-sm">filter_vintage</span> Decoração em Alta
+                        </h3>
+                        <div id="deco-container" class="space-y-4 text-[#5f5f5f]"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div class="text-center pt-8 pb-10">
+            <button id="btn-refresh"
+                class="font-handwritten text-xl text-[#eeada7] hover:scale-105 transition-transform opacity-60">
+                ✨ Quero ver mais novidades
+            </button>
+        </div>
+
+        <div id="nav-placeholder"></div>
+    </div>
+
+    <!-- Dynamic logic handled by /src/main.js -> initTendencias() -->
+</body>
+
+</html>

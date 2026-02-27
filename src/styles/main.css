@@ -1,0 +1,390 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #225373;
+  --color-dusty-rose: #eeada7;
+  --color-card-bg: #eeada7;
+  --color-fendi: #fdfbf7;
+  --color-background-light: #fdfbf7;
+  --color-text-main: #5f5f5f;
+
+  --font-display: "Inter", sans-serif;
+  --font-body: "Playfair Display", serif;
+  --font-handwritten: "Playfair Display", serif;
+  --font-sketch: "Inter", sans-serif;
+  /* Títulos de sketches agora usam Inter para branding impactante */
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* Premium Transitions */
+  --transition-premium: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  --shadow-premium: 0 20px 40px rgba(0, 0, 10, 0.05);
+  --shadow-hover: 0 40px 80px rgba(0, 0, 10, 0.1);
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(#d1cfc7 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@utility washi-tape {
+  background: rgba(238, 173, 167, 0.3);
+  backdrop-filter: blur(1px);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@utility polaroid-frame {
+  background: white;
+  padding: 10px 10px 40px 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@utility polaroid-rose {
+  background: var(--color-card-bg);
+  padding: 12px;
+  border-radius: 1.5rem;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+@utility paper-shadow {
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Countdown and Journey Styles */
+.countdown-container {
+  background: white;
+  --miga-pink: #ce9793;
+  --miga-pink-light: rgba(206, 151, 147, 0.1);
+  border: 1px solid rgba(206, 151, 147, 0.1);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.journey-step {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.journey-step::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  width: 1px;
+  height: 20px;
+  background: rgba(95, 95, 95, 0.1);
+  transform: translateX(-50%);
+}
+
+.journey-step:last-child::before {
+  display: none;
+}
+
+.journey-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d1d1;
+  transition: all 0.3s ease;
+}
+
+.journey-step.active .journey-dot {
+  background: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(34, 83, 115, 0.1);
+}
+
+.journey-step.active .journey-label {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Flip Card Styles - Refined for Moodboard */
+.flip-card {
+  perspective: 1000px;
+  background-color: transparent;
+  width: 100%;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1.5rem;
+}
+
+.flip-card-front {
+  z-index: 2;
+  /* Ensure the front side is visible initially */
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Premium Moodboard Cards Overhaul */
+.mood-card {
+  transition: var(--transition-premium);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.mood-image-container {
+  overflow: hidden;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+.mood-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mood-card:hover .mood-image {
+  transform: scale(1.05);
+}
+
+.premium-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.reveal-text {
+  opacity: 1;
+  transform: none;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+nav,
+.font-branding {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Forçar Playfair Display quando a classe for usada em títulos */
+h2.font-handwritten,
+h3.font-handwritten,
+.font-handwritten {
+  font-family: var(--font-handwritten) !important;
+  font-weight: 400;
+  /* Playfair fica melhor menos pesado para o estilo "handwritten" */
+}
+
+.font-moodboard {
+  font-family: var(--font-body);
+  font-style: italic;
+}
+
+.fill-1 {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* Custom staggered layout utilities - REMOVED for aligned look */
+
+
+/* Set Swapping Transitions */
+.set-fade-exit {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.set-fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.set-fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Navigation dots/minimalist nav */
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5f5f5f;
+  opacity: 0.2;
+  transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+/* Premium Modal Styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(253, 251, 247, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #eeada7;
+  width: 90%;
+  max-width: 400px;
+  padding: 3rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-icon {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 2rem;
+  opacity: 0.6;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.modal-desc {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: white;
+  opacity: 0.9;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-btn-primary {
+  background: white;
+  color: #225373;
+  padding: 1rem 2rem;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.modal-btn-secondary {
+  color: white;
+  opacity: 0.6;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.modal-btn-secondary:hover {
+  opacity: 1;
+}
+
+.modal-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  resize: none;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.modal-textarea:focus {
+  border-bottom-color: white;
+}
+
+.modal-textarea::placeholder {
+  color: white;
+  opacity: 0.4;
+  font-size: 1rem;
+}

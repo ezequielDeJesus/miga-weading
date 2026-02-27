@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miga - Chat com a Miga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@600&family=Caveat:wght@500;700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body class="dot-grid overflow-x-hidden">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7]">
+        <!-- Custom Editorial Header for Chat -->
+        <header
+            class="flex items-center justify-between p-6 pt-10 sticky top-0 z-50 bg-[#fdfbf7]/90 backdrop-blur-xl border-b border-black/5">
+            <div class="flex items-center gap-4">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-tr from-primary/20 to-dusty-rose/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    </div>
+                    <div class="size-14 rounded-full overflow-hidden border-4 border-white shadow-xl relative z-10">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcf4pEzkWLXxNIPmB4pZcQeWJRahfsFWgt7lQ8yF_olgPFsiRbBbCb7hSZvxYyZP8bhzUe_Hr9lIpVzMDw4rDhZ7uO_m7vQKN8HGWMYbW3G-SF7DDo-46WlGiw5UrlQME2pRlRtAwGyIeDrv300hyMZzqRhle2YNEvVliHFRwTHiJeDeOTrwGPC2Z7AK5QSpnDRhIrPQHb6LV-4W7TccQA1YQrZeyTOGHVVrysTu3GNClIYXMIv71mupW24PhGniSvAQJQOEwNqSrx"
+                            alt="Miga" class="w-full h-full object-cover grayscale-[15%]">
+                    </div>
+                    <span
+                        class="absolute bottom-0 right-0 size-3.5 bg-green-500 rounded-full border-4 border-[#fdfbf7] z-20 shadow-sm"></span>
+                </div>
+                <div>
+                    <h1 class="text-primary font-black uppercase tracking-tighter text-2xl">Miga</h1>
+                    <div class="flex items-center gap-2 opacity-60">
+                        <span class="text-[8px] font-black uppercase tracking-[0.2em] text-text-main">Sua Assessora
+                            Pessoal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button
+                    class="size-10 flex items-center justify-center bg-white/50 border border-black/5 rounded-full shadow-sm hover:bg-white transition-colors text-text-main"><span
+                        class="material-symbols-outlined text-lg">call</span></button>
+            </div>
+        </header>
+
+        <main id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-8 pb-40 no-scrollbar">
+            <div class="flex justify-center mb-4">
+                <span
+                    class="text-[9px] font-black uppercase px-6 py-2 bg-black/5 rounded-full opacity-30 tracking-[0.4em] text-text-main">Memórias
+                    de Hoje</span>
+            </div>
+
+            <!-- Miga's Initial Message -->
+            <div class="flex flex-col gap-2 max-w-[85%] animate-in fade-in slide-in-from-left-4 duration-700">
+                <div class="bg-[#eeada7] text-[#5f5f5f] p-5 rounded-[2rem] rounded-tl-none shadow-2xl relative">
+                    <p class="text-[13px] leading-relaxed font-medium">Oi, querida! 💎 Sentir um frio na barriga hoje é
+                        completamente normal e, honestamente, lindo. Significa que o sonho está ficando cada vez mais
+                        real. O que está passando pelo seu coração agora?</p>
+                </div>
+            </div>
+
+            <!-- Typing Indicator (Hidden by default) -->
+            <div id="typing-indicator" class="hidden items-center gap-4 px-2 mt-4 opacity-40 animate-pulse">
+                <div class="flex gap-1">
+                    <div class="size-1 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                    <div class="size-1 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                    <div class="size-1 bg-primary rounded-full animate-bounce"></div>
+                </div>
+                <span class="text-[9px] font-black uppercase tracking-[0.2em] italic">Miga está sentindo você...</span>
+            </div>
+        </main>
+
+        <!-- Editorial Chat Input -->
+        <div class="fixed bottom-32 left-0 right-0 px-6 z-50">
+            <form id="chat-form" class="max-w-md mx-auto relative group">
+                <div
+                    class="absolute -inset-2 bg-gradient-to-r from-primary/10 to-dusty-rose/10 rounded-3xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-700">
+                </div>
+                <div
+                    class="bg-white/80 backdrop-blur-2xl border border-black/5 rounded-2xl p-2 pl-6 flex items-center shadow-2xl relative">
+                    <input type="text" id="user-input" autocomplete="off" placeholder="Conte-me algo..."
+                        class="flex-1 bg-transparent py-3 text-xs focus:outline-none placeholder:text-text-main placeholder:opacity-30 font-medium">
+                    <button type="submit"
+                        class="size-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+                        <span class="material-symbols-outlined text-lg">send</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="nav-placeholder"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miga - Wedding Vibes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <style>
+        /* Modal Multi-Choice Styles */
+        .modal-options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .modal-option-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .modal-option-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+        }
+
+        .modal-option-btn.selected {
+            background: white !important;
+            color: #225373 !important;
+            font-weight: 900;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="dot-grid overflow-x-hidden">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7]">
+        <div id="header-placeholder" data-title="Wedding Vibes"></div>
+
+        <main id="main-content" class="flex-1 p-4 pb-32">
+            <div class="text-center pt-6 pb-10">
+                <h2 class="font-handwritten text-6xl text-[#5f5f5f] mb-2 lowercase italic">Wedding</h2>
+                <h1 class="font-black text-4xl tracking-widest uppercase opacity-70 -mt-2 text-[#5f5f5f]">VIBES</h1>
+                <div class="w-12 h-1 bg-[#225373] mx-auto mt-6 rounded-full opacity-60"></div>
+                <p class="mt-8 text-[11px] tracking-wide max-w-xs mx-auto opacity-70 font-medium text-[#5f5f5f]">
+                    Toque nas cartas para revelar a alma estética do seu casamento.
+                </p>
+            </div>
+
+            <!-- Moodboard Content - Dynamic Grid -->
+            <div id="mood-grid"
+                class="grid grid-cols-2 gap-x-8 gap-y-12 max-w-sm mx-auto mt-12 px-2 transition-all duration-700">
+                <!-- Cards will be injected here by JS -->
+            </div>
+
+            <!-- Minimalist Navigation Navigation -->
+            <div id="mood-nav"
+                class="flex flex-col items-center gap-6 mt-16 mb-8 opacity-0 transition-opacity duration-1000">
+                <div class="flex gap-3" id="nav-dots">
+                    <!-- Dots injected here -->
+                </div>
+                <button id="btn-back"
+                    class="text-[10px] font-black uppercase tracking-[0.3em] text-[#5f5f5f]/40 hover:text-[#5f5f5f]/80 transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">arrow_back_ios</span>
+                    Voltar
+                </button>
+            </div>
+
+            <div class="fixed top-32 -left-8 w-64 h-64 bg-[#225373]/5 rounded-full blur-3xl pointer-events-none -z-10">
+            </div>
+        </main>
+
+        <!-- Premium Modal Structure -->
+        <div id="mood-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span id="modal-icon" class="material-symbols-outlined modal-icon">local_florist</span>
+                <p id="modal-desc" class="modal-desc">Como você quer que eu te chame?</p>
+
+                <div class="modal-actions">
+                    <div id="modal-options" class="modal-options-container"></div>
+                    <textarea id="modal-answer" class="modal-textarea" placeholder="Escreva aqui sua visão..."
+                        rows="3"></textarea>
+                    <button id="modal-confirm-btn" class="modal-btn-primary">Confirmar Resposta</button>
+                    <button id="modal-close" class="modal-btn-secondary">Voltar ao mural</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="nav-placeholder"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+        // --- Data Definitions ---
+        const ALL_CARDS = [
+            // Set 1
+            { id: 'como_chamar', icon: 'favorite', desc: 'Como você quer que eu te chame?', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUhH6IhNk0X31kKra_raML6KW6B9GH5lmQKr1HnpYkKBCLqGI7g6FpAf-M6zo-HKbOsO-Yvc6cwWidse0Hc8Nd08dE0-x4JcLTVwd69D649ueUz6KLUTK4gwcAAKDfCeEz1pyc54QbYHqpjH5e1zMIMyIz-6BgnzmN_aJ6RDiIFcAOocsVfS76pR9h27RW0YN5SRW8SfPZFerqd0hTZcoKFcCy82tl8bLU4F3v94mcF5sso_icbS4yQ7m9OvONI_60MBEv5GpYM5s2' },
+            { id: 'metade_historia', icon: 'people', desc: 'E quem é a outra metade dessa história?', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAs8JoTSQZqHfvQidUVq4CsXNqUWS1PJPLBbs9EYDeXXdVnn_9iTXv6zxFSoegCta_rYR7GtAEsj-ZT68GqkoCV6_eauElbVB3j1jli4RxPvyWpfrKHg0vtcvtgvmdodAz4akUIUfPYS-H2B3MtfF8PSkX-WOxqf1f9AI3gmK_lfsjdv5fOB_uJLjMnVetkHH9Hu9kSN7TOVqwtmI0bj63KG_-ft3ejdx4LLSuJkKPWAWELQRqsHY6-VRqXJ9Q0pSBqkt6lXluS3j8N' },
+            {
+                id: 'atmosfera',
+                icon: 'auto_awesome',
+                desc: 'Que atmosfera visual faz seu coração bater diferente?',
+                options: [
+                    'Cenário leve & natural, cheio de fluidez',
+                    'Elegância clássica & atemporal',
+                    'Impacto visual & sofisticação dramática',
+                    'Minimalismo refinado & moderno'
+                ],
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBqXEsxlqd5vWPN1mxWOlozP7ZZGdmqE40R5K8mS6mt5k890AkNp6fY80PDNjZqRTzUpTwavQfOhwmnni-fZyziTFanZcu7zQb79R3M9lMjksNrL8NMoHgThNN-X6rfe0QiViofNwxm_p1tW2YqrOpkM2s8HeRYCRHgBIWOkeOgwv7p6T2S8LrT9iFYepp6o7rseCR2LS5gYR4EhTibp3keBEBvrWbiSithvJBOq1UkkX4jWmJBj6puuo-rZ4nx2tumAH24k1TXSFu_'
+            },
+            {
+                id: 'decoracao',
+                icon: 'home_pin',
+                desc: 'Quando você imagina a decoração, ela precisa ser…',
+                options: [
+                    'Suave & naturalmente elegante',
+                    'Rica em detalhes & elementos',
+                    'Clean & extremamente refinada',
+                    'Impactante & memorável'
+                ],
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDcf4pEzkWLXxNIPmB4pZcQeWJRahfsFWgt7lQ8yF_olgPFsiRbBbCb7hSZvxYyZP8bhzUe_Hr9lIpVzMDw4rDhZ7uO_m7vQKN8HGWMYbW3G-SF7DDo-46WlGiw5UrlQME2pRlRtAwGyIeDrv300hyMZzqRhle2YNEvVliHFRwTHiJeDeOTrwGPC2Z7AK5QSpnDRhIrPQHb6LV-4W7TccQA1YQrZeyTOGHVVrysTu3GNClIYXMIv71mupW24PhGniSvAQJQOEwNqSrx'
+            },
+            {
+                id: 'detalhe',
+                icon: 'verified_user',
+                desc: 'Qual desses detalhes você considera indispensável?',
+                options: [
+                    'Iluminação aconchegante & intimista',
+                    'Arranjos florais marcantes',
+                    'Elementos cenográficos impactantes',
+                    'Elegância minimalista impecável'
+                ],
+                img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop'
+            },
+            {
+                id: 'bebidas',
+                icon: 'liquor',
+                desc: 'Que universo de bebidas combina mais com a energia do seu casamento?',
+                options: [
+                    'Vinhos & espumantes elegantes',
+                    'Drinks & coquetéis sofisticados',
+                    'Cervejas & clima descontraído',
+                    'Uma mistura refinada de tudo'
+                ],
+                img: 'https://images.unsplash.com/photo-1519225497282-d49ad50cbd40?q=80&w=2070&auto=format&fit=crop'
+            }
+        ];
+
+        // --- Logic Constants ---
+        const CARDS_PER_SET = 6;
+        const STATE = {
+            currentSet: 0,
+            answers: {},
+            answeredInCurrentSet: 0,
+            activeCardData: null,
+            activeCardWrapper: null
+        };
+
+        // --- DOM Elements ---
+        const grid = document.getElementById('mood-grid');
+        const navDots = document.getElementById('nav-dots');
+        const btnBack = document.getElementById('btn-back');
+        const moodNav = document.getElementById('mood-nav');
+
+        // Modal Elements
+        const modal = document.getElementById('mood-modal');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalIcon = document.getElementById('modal-icon');
+        const modalClose = document.getElementById('modal-close');
+        const modalAnswer = document.getElementById('modal-answer');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+
+        // --- Functions ---
+        function renderSet(setIndex) {
+            // Smooth exit animation
+            grid.classList.add('set-fade-exit');
+
+            setTimeout(() => {
+                grid.innerHTML = '';
+                STATE.answeredInCurrentSet = 0;
+                const start = setIndex * CARDS_PER_SET;
+                const setCards = ALL_CARDS.slice(start, start + CARDS_PER_SET);
+
+                setCards.forEach((cardData) => {
+                    const cardEl = createCardElement(cardData);
+                    grid.appendChild(cardEl);
+                });
+
+                updateNav();
+                grid.classList.remove('set-fade-exit');
+                grid.classList.add('set-fade-enter');
+
+                // Trigger enter animation
+                requestAnimationFrame(() => {
+                    grid.classList.add('set-fade-enter-active');
+                    setTimeout(() => {
+                        grid.classList.remove('set-fade-enter', 'set-fade-enter-active');
+                        moodNav.style.opacity = '1';
+                    }, 800);
+                });
+            }, 600);
+        }
+
+        function createCardElement(data) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flip-card aspect-[3/4]';
+
+            // Check if already answered to preserve state
+            const isAnswered = STATE.answers[data.id];
+
+            wrapper.innerHTML = `
+                <div class="flip-card-inner">
+                    <!-- Front: Image -->
+                    <div class="flip-card-front mood-card polaroid-rose">
+                        <div class="mood-image-container w-full h-full">
+                            <img src="${data.img}" alt="Mood" class="mood-image w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Back: Question -->
+                    <div class="flip-card-back mood-card polaroid-rose" data-card-id="${data.id}">
+                        <div class="premium-overlay !bg-transparent !p-4">
+                            <div class="reveal-text flex flex-col items-center">
+                                <span class="material-symbols-outlined text-[#5f5f5f] text-4xl mb-3 opacity-40">${data.icon}</span>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.15em] leading-relaxed text-[#5f5f5f] opacity-80 mb-5 px-2">
+                                    ${data.desc}
+                                </p>
+                                <button class="choose-btn ${isAnswered ? 'bg-[#5f5f5f]' : 'bg-[#225373]'} text-white px-6 py-2 rounded-md text-[9px] font-black uppercase shadow-xl active:scale-95 transition-all tracking-widest">
+                                    ${isAnswered ? 'Respondido' : 'Escolher'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            wrapper.querySelector('.choose-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                openModal(data, wrapper);
+            });
+
+            if (isAnswered) {
+                STATE.answeredInCurrentSet++;
+                wrapper.querySelector('.flip-card-back').classList.add('ring-4', 'ring-[#225373]/30');
+            }
+
+            return wrapper;
+        }
+
+        function openModal(data, wrapper) {
+            STATE.activeCardData = data;
+            STATE.activeCardWrapper = wrapper;
+
+            modalIcon.innerText = data.icon;
+            modalDesc.innerText = data.desc;
+
+            const optionsContainer = document.getElementById('modal-options');
+            const textarea = document.getElementById('modal-answer');
+
+            if (data.options && data.options.length > 0) {
+                textarea.style.display = 'none';
+                optionsContainer.style.display = 'flex';
+                optionsContainer.innerHTML = '';
+
+                data.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'modal-option-btn';
+                    if (STATE.answers[data.id] === opt) btn.classList.add('selected');
+                    btn.innerText = opt;
+                    btn.onclick = () => {
+                        optionsContainer.querySelectorAll('.modal-option-btn').forEach(b => b.classList.remove('selected'));
+                        btn.classList.add('selected');
+                        STATE.selectedOption = opt;
+                    };
+                    optionsContainer.appendChild(btn);
+                });
+                STATE.selectedOption = STATE.answers[data.id] || null;
+            } else {
+                textarea.style.display = 'block';
+                optionsContainer.style.display = 'none';
+                modalAnswer.value = STATE.answers[data.id] || '';
+                setTimeout(() => modalAnswer.focus(), 500);
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            STATE.activeCardData = null;
+            STATE.activeCardWrapper = null;
+        }
+
+        function handleResponseSubmission() {
+            const data = STATE.activeCardData;
+            const wrapper = STATE.activeCardWrapper;
+            let answerText;
+
+            if (data.options && data.options.length > 0) {
+                answerText = STATE.selectedOption;
+            } else {
+                answerText = modalAnswer.value.trim();
+            }
+
+            if (!answerText) return;
+
+            const wasAlreadyAnswered = !!STATE.answers[data.id];
+            STATE.answers[data.id] = answerText;
+
+            // Update Card UI
+            const btn = wrapper.querySelector('.choose-btn');
+            btn.innerText = 'Respondido';
+            btn.classList.remove('bg-[#225373]');
+            btn.classList.add('bg-[#5f5f5f]');
+            wrapper.querySelector('.flip-card-back').classList.add('ring-4', 'ring-[#225373]/30');
+
+            closeModal();
+
+            // Flip back and check completion
+            setTimeout(() => {
+                wrapper.querySelector('.flip-card-inner').style.transform = 'rotateY(0deg)';
+                if (!wasAlreadyAnswered) {
+                    checkSetCompletion();
+                }
+            }, 500);
+        }
+
+        function checkSetCompletion() {
+            STATE.answeredInCurrentSet++;
+            if (STATE.answeredInCurrentSet >= CARDS_PER_SET) {
+                const totalSets = Math.ceil(ALL_CARDS.length / CARDS_PER_SET);
+                if (STATE.currentSet < totalSets - 1) {
+                    setTimeout(() => {
+                        STATE.currentSet++;
+                        renderSet(STATE.currentSet);
+                    }, 1200);
+                }
+            }
+        }
+
+        function updateNav() {
+            // Update Dots
+            navDots.innerHTML = '';
+            const totalSets = Math.ceil(ALL_CARDS.length / CARDS_PER_SET);
+            for (let i = 0; i < totalSets; i++) {
+                const dot = document.createElement('div');
+                dot.className = `nav-dot ${i === STATE.currentSet ? 'active' : ''}`;
+                navDots.appendChild(dot);
+            }
+
+            // Update Back Button Visibility
+            btnBack.style.opacity = STATE.currentSet > 0 ? '1' : '0';
+            btnBack.style.pointerEvents = STATE.currentSet > 0 ? 'auto' : 'none';
+        }
+
+        // --- Event Listeners ---
+        modalClose.addEventListener('click', closeModal);
+        modalConfirmBtn.addEventListener('click', handleResponseSubmission);
+
+        btnBack.addEventListener('click', () => {
+            if (STATE.currentSet > 0) {
+                STATE.currentSet--;
+                renderSet(STATE.currentSet);
+            }
+        });
+
+        // --- Initial Start ---
+        window.addEventListener('load', () => renderSet(0));
+    </script>
+</body>
+
+</html>

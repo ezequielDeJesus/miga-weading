@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miga - Catálogo de Indicações</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body class="dot-grid">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7]">
+        <div id="header-placeholder" data-title="Indicações"></div>
+
+        <main id="main-content" class="flex-1 p-4 space-y-12 pb-32">
+            <div class="pt-4 px-2">
+                <h2 class="font-handwritten text-5xl text-[#5f5f5f]">Catálogo de</h2>
+                <h2 class="font-handwritten text-5xl text-[#5f5f5f] -mt-2">Indicações</h2>
+                <p class="font-black text-[9px] tracking-[0.3em] uppercase opacity-40 mt-1 text-[#5f5f5f]">Curated
+                    Inspirations</p>
+            </div>
+
+            <!-- Item 1 -->
+            <div class="polaroid-rose rounded-sm">
+                <div class="aspect-[4/5] bg-white rounded-sm mb-4 relative group overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcf4pEzkWLXxNIPmB4pZcQeWJRahfsFWgt7lQ8yF_olgPFsiRbBbCb7hSZvxYyZP8bhzUe_Hr9lIpVzMDw4rDhZ7uO_m7vQKN8HGWMYbW3G-SF7DDo-46WlGiw5UrlQME2pRlRtAwGyIeDrv300hyMZzqRhle2YNEvVliHFRwTHiJeDeOTrwGPC2Z7AK5QSpnDRhIrPQHb6LV-4W7TccQA1YQrZeyTOGHVVrysTu3GNClIYXMIv71mupW24PhGniSvAQJQOEwNqSrx"
+                        alt="Ethereal Bride"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute bottom-4 right-4 flex flex-col gap-2">
+                        <button
+                            class="size-8 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center text-white"><span
+                                class="material-symbols-outlined text-sm">favorite</span></button>
+                        <button
+                            class="size-8 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center text-white"><span
+                                class="material-symbols-outlined text-sm">share</span></button>
+                    </div>
+                </div>
+                <h3 class="font-handwritten text-2xl text-[#5f5f5f]">The Ethereal Bride</h3>
+                <p class="text-xs text-[#5f5f5f]/80 leading-relaxed max-w-[90%]">Silk organza with hand-sewn pearls. A
+                    modern take on heritage elegance.</p>
+                <p class="text-[8px] font-handwritten font-black uppercase text-[#5f5f5f]/40 mt-4 tracking-widest">
+                    Moodboard: Ivory Dream
+                </p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="polaroid-rose rounded-sm">
+                <div class="aspect-square bg-white rounded-sm mb-4 relative overflow-hidden">
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-[#225373]/80 backdrop-blur-md text-white text-[7px] font-black px-3 py-1 rounded-full tracking-widest uppercase">
+                        New Arrival</div>
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs8JoTSQZqHfvQidUVq4CsXNqUWS1PJPLBbs9EYDeXXdVnn_9iTXv6zxFSoegCta_rYR7GtAEsj-ZT68GqkoCV6_eauElbVB3j1jli4RxPvyWpfrKHg0vtcvtgvmdodAz4akUIUfPYS-H2B3MtfF8PSkX-WOxqf1f9AI3gmK_lfsjdv5fOB_uJLjMnVetkHH9Hu9kSN7TOVqwtmI0bj63KG_-ft3ejdx4LLSuJkKPWAWELQRqsHY6-VRqXJ9Q0pSBqkt6lXluS3j8N"
+                        alt="Wild Romance" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-handwritten text-2xl text-[#5f5f5f]">Wild Romance</h3>
+                <p class="text-xs text-[#5f5f5f]/80 leading-relaxed max-w-[90%]">Tuscan-inspired tablescapes featuring
+                    dried
+                    lavender and olive branches.</p>
+                <p class="text-[8px] font-handwritten font-black uppercase text-[#5f5f5f]/40 mt-4 tracking-widest">
+                    Moodboard: Summer in
+                    Italy
+                </p>
+            </div>
+        </main>
+
+        <div id="nav-placeholder"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

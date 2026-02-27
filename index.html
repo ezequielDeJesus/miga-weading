@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miga - Planejamento de Casamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+</head>
+
+<body class="dot-grid overflow-x-hidden">
+  <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7] relative">
+    <div id="header-placeholder" data-title="Miga"></div>
+
+    <!-- Miga Global Access (Editorial Bubble) -->
+    <a href="/pages/chat.html" class="fixed right-6 bottom-36 z-[50] group">
+      <div
+        class="absolute -inset-2 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity">
+      </div>
+      <div
+        class="size-14 bg-white rounded-full shadow-2xl flex items-center justify-center border border-black/5 relative group-active:scale-90 transition-transform">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcf4pEzkWLXxNIPmB4pZcQeWJRahfsFWgt7lQ8yF_olgPFsiRbBbCb7hSZvxYyZP8bhzUe_Hr9lIpVzMDw4rDhZ7uO_m7vQKN8HGWMYbW3G-SF7DDo-46WlGiw5UrlQME2pRlRtAwGyIeDrv300hyMZzqRhle2YNEvVliHFRwTHiJeDeOTrwGPC2Z7AK5QSpnDRhIrPQHb6LV-4W7TccQA1YQrZeyTOGHVVrysTu3GNClIYXMIv71mupW24PhGniSvAQJQOEwNqSrx"
+          class="size-10 rounded-full object-cover">
+        <div
+          class="absolute -top-1 -right-1 size-4 bg-primary text-white text-[8px] flex items-center justify-center rounded-full border-2 border-white font-black animate-bounce">
+          1</div>
+      </div>
+    </a>
+
+    <main id="main-content" class="flex-1 pb-32">
+      <!-- Greeting & Countdown (Editorial) -->
+      <section class="px-6 pt-10 pb-12 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-dusty-rose/5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute top-1/2 -left-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl -z-10"></div>
+
+        <div class="flex flex-col items-center gap-6">
+          <div class="text-center space-y-1">
+            <h2 class="font-handwritten text-5xl text-text-main">Oi, Beatriz</h2>
+            <p class="font-sketch text-lg text-text-main/60 tracking-wider">O seu grande dia está ganhando vida...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journey Tracker (Subtle Status) -->
+      <section class="px-8 pb-10">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-black text-[10px] tracking-[0.3em] uppercase opacity-40 text-text-main">Sua Jornada</h3>
+          <span class="text-[9px] font-bold text-primary px-3 py-1 bg-primary/5 rounded-full">3 de 6 etapas</span>
+        </div>
+
+        <div class="flex justify-between items-start px-2 relative">
+          <!-- Step 1 (Completed) -->
+          <div class="journey-step flex flex-col items-center gap-2 group w-12">
+            <div class="journey-dot !bg-primary scale-110 !opacity-100 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[6px] text-white fill-1">check</span>
+            </div>
+            <span class="journey-label text-[7px] text-center uppercase tracking-tighter opacity-80">Conceito</span>
+          </div>
+
+          <!-- Step 2 (Completed) -->
+          <div class="journey-step flex flex-col items-center gap-2 group w-12">
+            <div class="journey-dot !bg-primary scale-110 !opacity-100 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[6px] text-white fill-1">check</span>
+            </div>
+            <span class="journey-label text-[7px] text-center uppercase tracking-tighter opacity-80">Paleta</span>
+          </div>
+
+          <!-- Step 3 (Active) -->
+          <div class="journey-step active flex flex-col items-center gap-2 group w-12">
+            <div class="journey-dot"></div>
+            <span class="journey-label text-[7px] text-center uppercase tracking-tighter">Vestido</span>
+          </div>
+
+          <!-- Step 4 (Locked) -->
+          <div class="journey-step flex flex-col items-center gap-2 group w-12">
+            <div class="journey-dot opacity-30"></div>
+            <span class="journey-label text-[7px] text-center uppercase tracking-tighter opacity-30">Decor</span>
+          </div>
+
+          <!-- Step 5 (Locked) -->
+          <div class="journey-step flex flex-col items-center gap-2 group w-12">
+            <div class="journey-dot opacity-30"></div>
+            <span class="journey-label text-[7px] text-center uppercase tracking-tighter opacity-30">Local</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="px-6 py-4">
+        <h3 class="font-black text-[10px] tracking-[0.3em] uppercase opacity-40 text-text-main mb-8">Inspirações Curadas
+        </h3>
+      </div>
+
+      <div class="px-4 grid grid-cols-2 gap-x-4 gap-y-6 mt-4 relative z-20">
+        <!-- 1. Wedding Vibes -->
+        <a href="/pages/moodboard.html" class="block group relative flex flex-col items-center">
+          <div class="polaroid-rose w-full transition-all duration-500 mb-3">
+            <div
+              class="aspect-square bg-[#fdfbf7]/10 overflow-hidden rounded-xl flex items-center justify-center text-white/80 border border-white/20">
+              <span class="material-symbols-outlined text-4xl opacity-80">auto_stories</span>
+            </div>
+          </div>
+          <div class="px-4 py-1 rounded-full bg-[#fdfbf7] border border-[#ce9793]/10 shadow-sm -mt-2 relative z-30">
+            <h3 class="font-handwritten text-sm font-bold text-center text-[#5f5f5f]">Wedding Vibes</h3>
+          </div>
+        </a>
+
+        <!-- 3. O Vestido Da Sua Vida -->
+        <a href="/pages/provador.html" class="block group relative flex flex-col items-center">
+          <div class="polaroid-rose w-full transition-all duration-500 mb-3">
+            <div class="aspect-square bg-white overflow-hidden rounded-xl">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcf4pEzkWLXxNIPmB4pZcQeWJRahfsFWgt7lQ8yF_olgPFsiRbBbCb7hSZvxYyZP8bhzUe_Hr9lIpVzMDw4rDhZ7uO_m7vQKN8HGWMYbW3G-SF7DDo-46WlGiw5UrlQME2pRlRtAwGyIeDrv300hyMZzqRhle2YNEvVliHFRwTHiJeDeOTrwGPC2Z7AK5QSpnDRhIrPQHb6LV-4W7TccQA1YQrZeyTOGHVVrysTu3GNClIYXMIv71mupW24PhGniSvAQJQOEwNqSrx"
+                alt="Provador" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="px-4 py-1 rounded-full bg-[#fdfbf7] border border-[#ce9793]/10 shadow-sm -mt-2 relative z-30">
+            <h3 class="font-handwritten text-sm font-bold text-center text-[#5f5f5f]">O Vestido Da Sua Vida</h3>
+          </div>
+        </a>
+
+        <!-- 4. Chat com a Miga -->
+        <a href="/pages/chat.html" class="block group relative flex flex-col items-center">
+          <div
+            class="absolute -top-2 -right-2 bg-[#225373] text-white p-1.5 rounded-full shadow-lg z-30 scale-75 border border-white">
+            <span class="material-symbols-outlined text-[10px] block fill-1">favorite</span>
+          </div>
+          <div class="polaroid-rose w-full transition-all duration-500 mb-3">
+            <div
+              class="aspect-square bg-[#fdfbf7]/10 overflow-hidden rounded-xl flex flex-col items-center justify-center text-white/80 border border-white/20">
+              <span class="material-symbols-outlined text-4xl mb-1 opacity-80">forum</span>
+            </div>
+          </div>
+          <div class="px-4 py-1 rounded-full bg-[#fdfbf7] border border-[#ce9793]/10 shadow-sm -mt-2 relative z-30">
+            <h3 class="font-handwritten text-sm font-bold text-center text-[#5f5f5f]">Chat com a Miga</h3>
+          </div>
+        </a>
+
+        <!-- 5. Cenário Dos Sonhos -->
+        <a href="/pages/decorador.html" class="block group relative flex flex-col items-center">
+          <div class="polaroid-rose w-full transition-all duration-500 mb-3">
+            <div class="aspect-square bg-white rounded-xl overflow-hidden">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs8JoTSQZqHfvQidUVq4CsXNqUWS1PJPLBbs9EYDeXXdVnn_9iTXv6zxFSoegCta_rYR7GtAEsj-ZT68GqkoCV6_eauElbVB3j1jli4RxPvyWpfrKHg0vtcvtgvmdodAz4akUIUfPYS-H2B3MtfF8PSkX-WOxqf1f9AI3gmK_lfsjdv5fOB_uJLjMnVetkHH9Hu9kSN7TOVqwtmI0bj63KG_-ft3ejdx4LLSuJkKPWAWELQRqsHY6-VRqXJ9Q0pSBqkt6lXluS3j8N"
+                alt="Decorador" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="px-4 py-1 rounded-full bg-[#fdfbf7] border border-[#ce9793]/10 shadow-sm -mt-2 relative z-30">
+            <h3 class="font-handwritten text-sm font-bold text-center text-[#5f5f5f]">Cenário Dos Sonhos</h3>
+          </div>
+        </a>
+
+        <!-- 6. Catálogo de Indicações -->
+        <a href="/pages/catalogo.html" class="block group relative mx-auto col-span-2 w-1/2 flex flex-col items-center">
+          <div class="polaroid-rose w-full transition-all duration-500 mb-3">
+            <div
+              class="aspect-square bg-[#fdfbf7]/10 overflow-hidden rounded-xl flex items-center justify-center text-white/80 border border-white/20">
+              <span class="material-symbols-outlined text-4xl opacity-80">menu_book</span>
+            </div>
+          </div>
+          <div class="px-4 py-1 rounded-full bg-[#fdfbf7] border border-[#ce9793]/10 shadow-sm -mt-2 relative z-30">
+            <h3 class="font-handwritten text-sm font-bold text-center text-[#5f5f5f]">Catálogo de Indicações</h3>
+          </div>
+        </a>
+      </div>
+
+    </main>
+
+    <div id="nav-placeholder"></div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help da Noiva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@600&family=Caveat:wght@500;700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <style>
+        .custom-gradient-bg {
+            background: linear-gradient(180deg, #fdfbf7 0%, #eeada7 40%, #d89993 100%);
+        }
+    </style>
+</head>
+
+<body class="custom-gradient-bg overflow-x-hidden min-h-screen" style="color: #5f5f5f;">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl relative pb-24">
+
+        <!-- Header -->
+        <header class="flex flex-col pt-10 pb-4 px-4 sticky top-0 z-50 bg-[#fdfbf7]/60 backdrop-blur-md">
+            <div class="flex flex-col items-center justify-center relative w-full mb-4">
+                <a href="/" class="absolute left-0 text-[#225373] p-2 hover:bg-black/5 rounded-full transition-colors">
+                    <span class="material-symbols-outlined font-bold text-xl">arrow_back_ios_new</span>
+                </a>
+                <h1 class="font-black text-2xl text-[#5f5f5f] tracking-tight">Help da Noiva</h1>
+                <p class="font-handwritten text-[#5f5f5f] text-base opacity-80 mt-[-4px]">Sua melhor amiga está aqui
+                    para ajudar</p>
+                <button class="absolute right-0 text-[#225373] p-2 hover:bg-black/5 rounded-full transition-colors">
+                    <span class="material-symbols-outlined font-bold">more_vert</span>
+                </button>
+            </div>
+
+            <!-- Quick Prompts / Tags -->
+            <div class="flex gap-3 overflow-x-auto no-scrollbar py-2 -mx-4 px-4">
+                <button
+                    class="shrink-0 bg-white px-5 py-2.5 rounded-full shadow-sm text-xs font-bold text-[#5f5f5f] border border-black/5 flex items-center gap-2 hover:bg-[#fdfbf7] active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm text-[#225373]">restaurant</span> Dúvidas sobre o
+                    buffet?
+                </button>
+                <button
+                    class="shrink-0 bg-white px-5 py-2.5 rounded-full shadow-sm text-xs font-bold text-[#5f5f5f] border border-black/5 flex items-center gap-2 hover:bg-[#fdfbf7] active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm text-[#225373]">church</span> Como escolher o local
+                </button>
+                <button
+                    class="shrink-0 bg-white px-5 py-2.5 rounded-full shadow-sm text-xs font-bold text-[#5f5f5f] border border-black/5 flex items-center gap-2 hover:bg-[#fdfbf7] active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm text-[#225373]">music_note</span> Playlist perfeita
+                </button>
+            </div>
+        </header>
+
+        <main id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-6 pb-40 no-scrollbar">
+
+            <!-- Miga Message 1 -->
+            <div class="flex gap-3 max-w-[90%]">
+                <div class="shrink-0 self-end mb-4">
+                    <div class="size-9 rounded-full overflow-hidden border-2 border-[#eeada7] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+                            alt="Miga" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1 w-full">
+                    <div class="bg-[#eeada7] text-[#5f5f5f] p-5 rounded-[1.5rem] rounded-bl-none shadow-md">
+                        <p class="text-[13px] leading-relaxed font-medium">Olá, noivinha! ❤️ Estou aqui para tornar seu
+                            planejamento mais leve. Qual a dúvida de hoje?</p>
+                    </div>
+                    <span class="text-[9px] font-bold opacity-50 ml-2 tracking-widest text-[#5f5f5f]">Miga ·
+                        Agora</span>
+                </div>
+            </div>
+
+            <!-- User Message 1 -->
+            <div class="flex justify-end gap-3 w-full self-end ml-auto">
+                <div class="flex flex-col gap-1 max-w-[80%] items-end">
+                    <div class="bg-[#eeada7] text-[#5f5f5f] p-5 rounded-[1.5rem] rounded-br-none shadow-md text-left">
+                        <p class="text-[13px] leading-relaxed font-medium">Oi Miga! Estou um pouco perdida com o
+                            cronograma de flores. Quando devo fechar com o fornecedor?</p>
+                    </div>
+                    <span class="text-[9px] font-bold opacity-50 mr-2 tracking-widest text-[#5f5f5f]">Você ·
+                        10:05</span>
+                </div>
+                <div class="shrink-0 self-end mb-4">
+                    <div class="size-9 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80"
+                            alt="User" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Miga Message 2 -->
+            <div class="flex gap-3 max-w-[95%]">
+                <div class="shrink-0 self-end mb-4">
+                    <div class="size-9 rounded-full overflow-hidden border-2 border-[#eeada7] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+                            alt="Miga" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1 w-full">
+                    <div class="bg-[#eeada7] text-[#5f5f5f] p-5 rounded-[1.5rem] rounded-bl-none shadow-md">
+                        <p class="text-[13px] leading-relaxed font-medium">Essa é uma ótima pergunta! Geralmente
+                            recomendamos fechar entre 8 a 6 meses antes do grande dia. Assim você garante a
+                            disponibilidade da equipe e consegue flores da estação que sonhou. Quer que eu te ajude a
+                            listar os tipos de flores para o mês do seu casamento?</p>
+                    </div>
+                    <span class="text-[9px] font-bold opacity-50 ml-2 tracking-widest text-[#5f5f5f]">Miga ·
+                        10:06</span>
+                </div>
+            </div>
+
+            <!-- Watermark -->
+            <div class="flex justify-center mt-12 mb-8 opacity-30 px-6">
+                <div class="border border-dashed border-[#5f5f5f] rounded-xl px-8 py-3 w-full max-w-[280px]">
+                    <p
+                        class="text-center text-[#5f5f5f] font-mono text-xs tracking-[0.3em] uppercase flex items-center justify-center gap-2">
+                        Planejam<span class="text-xs">🤍</span>to é amor
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Chat Input -->
+        <div class="fixed bottom-[90px] left-0 right-0 px-4 z-50">
+            <div class="max-w-md mx-auto flex items-center gap-3">
+                <button
+                    class="size-10 shrink-0 bg-[#225373] text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-2xl font-bold">add</span>
+                </button>
+                <div class="bg-white flex-1 rounded-full p-1.5 pl-6 flex items-center shadow-lg border border-black/5">
+                    <input type="text" placeholder="Conte-me seus planos..."
+                        class="flex-1 bg-transparent py-2.5 text-xs focus:outline-none placeholder:text-[#5f5f5f]/40 font-medium text-[#5f5f5f]">
+                </div>
+                <button
+                    class="size-12 shrink-0 bg-[#225373] text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-xl pl-1">send</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="nav-placeholder"></div>
+    </div>
+
+    <script type="module">
+        import { renderBottomNav } from '/src/components/BottomNav.js';
+        document.getElementById('nav-placeholder').innerHTML = renderBottomNav();
+
+        // Auto-scroll to bottom
+        const chatMessages = document.getElementById('chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    </script>
+</body>
+
+</html>

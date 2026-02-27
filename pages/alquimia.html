@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alquimia das Almas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <!-- Ensure tailwind is active if running Vite -->
+    <style>
+        .radio-custom:checked {
+            border-color: #225373;
+            background-color: #225373;
+        }
+
+        .radio-custom:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-[#fdfbf7] overflow-x-hidden" style="color: #5f5f5f;">
+    <div id="app-shell" class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-[#fdfbf7] relative pb-28">
+
+        <!-- Header -->
+        <div id="header-placeholder" data-title="Alquimia"></div>
+
+        <main class="flex-1 px-4 space-y-6">
+            <!-- Vibe Section -->
+            <section class="bg-[#eeada7] rounded-2xl p-6 shadow-md relative mt-4">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-white/30 rounded-full"></div>
+                <h2 class="text-white text-lg mb-4 text-center">1. Qual a sua vibe hoje?</h2>
+                <div class="space-y-3 relative z-10">
+                    <button
+                        class="w-full bg-[#225373] text-white py-3.5 px-6 rounded-full flex justify-between items-center shadow-lg transform transition-transform active:scale-95">
+                        <span class="font-bold text-sm">Com álcool</span>
+                        <span class="text-lg">🍹</span>
+                    </button>
+                    <button
+                        class="w-full bg-white/30 text-white/90 py-3.5 px-6 rounded-full flex justify-between items-center border border-white/20 hover:bg-white/40 transform transition-transform active:scale-95">
+                        <span class="font-semibold text-sm">Sem álcool (Mocktail)</span>
+                        <span class="text-lg">🍋</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Paladar Section -->
+            <section class="border-2 border-dashed border-[#eeada7]/60 rounded-2xl p-6 relative">
+                <h2 class="text-[#5f5f5f] text-lg mb-6 text-center">2. Seu paladar prefere...</h2>
+                <div class="space-y-4">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <div class="relative flex items-center justify-center w-4 h-4">
+                            <input type="radio" name="paladar" value="doce"
+                                class="appearance-none w-4 h-4 border border-[#5f5f5f]/40 rounded-full radio-custom outline-none transition-all">
+                        </div>
+                        <span class="text-sm font-medium text-[#5f5f5f]/80 group-hover:text-[#5f5f5f]">Doce &
+                            Frutado</span>
+                    </label>
+                    <div class="h-px w-full bg-[#5f5f5f]/10"></div>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <div class="relative flex items-center justify-center w-4 h-4">
+                            <input type="radio" name="paladar" value="citrico"
+                                class="appearance-none w-4 h-4 border border-[#5f5f5f]/40 rounded-full radio-custom outline-none transition-all">
+                        </div>
+                        <span class="text-sm font-medium text-[#5f5f5f]/80 group-hover:text-[#5f5f5f]">Cítrico &
+                            Refrescante</span>
+                    </label>
+                    <div class="h-px w-full bg-[#5f5f5f]/10"></div>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <div class="relative flex items-center justify-center w-4 h-4">
+                            <input type="radio" name="paladar" value="seco"
+                                class="appearance-none w-4 h-4 border border-[#5f5f5f]/40 rounded-full radio-custom outline-none transition-all">
+                        </div>
+                        <span class="text-sm font-medium text-[#5f5f5f]/80 group-hover:text-[#5f5f5f]">Seco &
+                            Sofisticado</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Personalização Extra -->
+            <section class="bg-[#eeada7]/10 rounded-2xl p-6 shadow-sm border-2 border-white mb-8">
+                <h2 class="text-[#5f5f5f] text-lg mb-4 text-center">3. Um toque especial seu...</h2>
+                <p class="text-[11px] text-[#5f5f5f]/60 text-center mb-5 italic">Algum ingrediente que ama? Uma cor? Um
+                    tema especial?</p>
+                <textarea id="extra-preference" placeholder="Ex: Gosto de lavanda e algo que lembre o mar..."
+                    class="w-full bg-white/70 border border-[#eeada7]/30 rounded-2xl p-5 text-sm focus:ring-2 focus:ring-[#225373] focus:border-transparent outline-none transition-all resize-none min-h-[120px] shadow-inner mb-2"></textarea>
+            </section>
+
+            <!-- Cálice de Alquimia (Placeholder) -->
+            <section id="alchemy-placeholder"
+                class="bg-white/40 border-2 border-dashed border-[#eeada7]/30 rounded-[2rem] p-10 flex flex-col items-center justify-center text-center transition-all duration-500 mb-6">
+                <div
+                    class="w-20 h-20 bg-[#eeada7]/10 rounded-full flex items-center justify-center mb-4 shadow-sm animate-pulse-soft">
+                    <span class="material-symbols-outlined text-[#eeada7] text-4xl">wine_bar</span>
+                </div>
+                <h3 class="text-[#5f5f5f] text-base font-serif mb-2 text-center">Seu Cálice de Alquimia</h3>
+                <p class="text-[11px] text-[#5f5f5f]/60 leading-relaxed px-4 text-center">
+                    Selecione suas preferências e digite seus desejos para ver a magia florescer aqui...
+                </p>
+            </section>
+
+            <div class="flex justify-center relative z-20 mb-8">
+                <button id="btn-generate-drink"
+                    class="bg-gradient-to-r from-[#225373] to-[#123146] text-white text-xs font-bold tracking-[0.1em] uppercase px-12 py-4.5 rounded-full shadow-[0_12px_24px_rgba(34,83,115,0.4)] border-2 border-white transform transition-all active:scale-95 active:shadow-inner hover:shadow-[0_15px_30px_rgba(34,83,115,0.5)] hover:-translate-y-1 group bg-size-200">
+                    <span class="flex items-center gap-3">
+                        <span
+                            class="material-symbols-outlined text-base group-hover:rotate-12 transition-transform">auto_awesome</span>
+                        GERAR MINHA ALQUIMIA
+                    </span>
+                </button>
+            </div>
+
+            <!-- Result Card (Initially Hidden) -->
+            <section id="result-card"
+                class="bg-white rounded-[2rem] shadow-xl overflow-hidden mt-4 relative hidden transition-all duration-700 transform translate-y-8 opacity-0">
+                <div id="result-image" class="h-64 w-full bg-cover bg-center relative">
+                    <!-- Share Button -->
+                    <button id="btn-share-drink"
+                        class="absolute top-4 right-4 size-10 bg-white/80 backdrop-blur-md text-[#225373] rounded-full shadow-lg flex items-center justify-center border border-white/20 active:scale-95 transition-transform z-30">
+                        <span class="material-symbols-outlined text-xl">share</span>
+                    </button>
+                    <!-- Gradient overlay for text -->
+                    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <h3 class="absolute bottom-4 left-6 text-white text-xl font-serif">Essência de Outono</h3>
+                </div>
+                <div class="p-6">
+                    <p class="text-xs italic text-[#5f5f5f]/80 leading-relaxed mb-6">
+                        "Refrescante, com notas de hibisco e um toque de alecrim, perfeito para celebrar momentos
+                        eternos."
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <button
+                            class="bg-[#225373] text-white text-xs font-bold px-6 py-3 rounded-xl shadow-md transform transition-transform active:scale-95">
+                            Salvar Favorito
+                        </button>
+                        <a href="#" class="text-[#225373] text-xs font-bold underline underline-offset-4">Ver
+                            Receita</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Horizontal Scroll Choices -->
+            <section class="pt-4 pb-2">
+                <h3 class="text-[#5f5f5f] text-sm font-serif mb-4">Outras escolhas...</h3>
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4">
+                    <!-- Card 1 -->
+                    <div
+                        class="shrink-0 w-32 bg-[#eeada7]/10 rounded-2xl p-2 pb-3 shadow-sm border border-black/5 flex flex-col gap-2">
+                        <div class="w-full h-24 bg-black/5 rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=300"
+                                alt="Gin Tonica" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-[9px] font-bold text-center text-[#5f5f5f] uppercase tracking-tighter">Gin
+                            Tônica Herbal</h4>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        class="shrink-0 w-32 bg-[#f4ecea] rounded-2xl p-2 pb-3 shadow-sm border border-black/5 flex flex-col gap-2">
+                        <div class="w-full h-24 bg-black/5 rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&q=80&w=300"
+                                alt="Mojito" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-[9px] font-bold text-center text-[#5f5f5f] uppercase tracking-tighter">Mojito
+                            Clássico</h4>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        class="shrink-0 w-32 bg-[#fdf5eb] rounded-2xl p-2 pb-3 shadow-sm border border-black/5 flex flex-col gap-2">
+                        <div class="w-full h-24 bg-black/5 rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1536935338788-846fb56e55f1?auto=format&fit=crop&q=80&w=300"
+                                alt="Mimosa" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-[9px] font-bold text-center text-[#5f5f5f] uppercase tracking-tighter">Mimosa de
+                            Pêssego</h4>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="nav-placeholder"></div>
+    </div>
+
+    <script type="module">
+        import { renderBottomNav } from '/src/components/BottomNav.js';
+        import { renderHeader } from '/src/components/AppHeader.js';
+        import { NanoBananaAI } from '/src/utils/nanoBanana.js';
+        import { shareImage } from '/src/utils/share.js';
+
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        if (headerPlaceholder) {
+            headerPlaceholder.innerHTML = renderHeader(headerPlaceholder.dataset.title);
+        }
+        document.getElementById('nav-placeholder').innerHTML = renderBottomNav();
+
+        const aiBtn = document.getElementById('btn-generate-drink');
+        const resultCard = document.getElementById('result-card');
+        const resultTitle = resultCard.querySelector('h3');
+        const resultDesc = resultCard.querySelector('p');
+        const resultImg = document.getElementById('result-image');
+        const extraInput = document.getElementById('extra-preference');
+        const shareBtn = document.getElementById('btn-share-drink');
+
+        let profile = { alcohol: true, taste: 'doce', extra: '' };
+        let currentResult = null;
+
+        // Captura vibe (álcool/sem álcool)
+        const vibeBtns = document.querySelectorAll('section.bg-[#eeada7] button');
+        vibeBtns.forEach((btn, idx) => {
+            btn.onclick = () => {
+                profile.alcohol = idx === 0;
+                vibeBtns.forEach(b => {
+                    b.classList.remove('bg-[#225373]');
+                    b.classList.add('bg-white/30');
+                });
+                btn.classList.remove('bg-white/30');
+                btn.classList.add('bg-[#225373]');
+            };
+        });
+
+        // Captura paladar
+        const tasteRadios = document.querySelectorAll('input[name="paladar"]');
+        tasteRadios.forEach(radio => {
+            radio.onchange = () => { profile.taste = radio.value; };
+        });
+
+        // Chamada da IA
+        aiBtn.onclick = async () => {
+            const originalContent = aiBtn.innerHTML;
+            profile.extra = extraInput.value;
+            aiBtn.disabled = true;
+            aiBtn.innerHTML = `
+                <span class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm animate-spin">cyclone</span>
+                    PREPARANDO ALQUIMIA...
+                </span>
+            `;
+
+            try {
+                const result = await NanoBananaAI.suggestDrink(profile);
+                currentResult = result;
+
+                console.log('🍹 Alquimia: Sucesso!', result);
+
+                // Esconde o placeholder
+                const placeholder = document.getElementById('alchemy-placeholder');
+                if (placeholder) {
+                    placeholder.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => placeholder.classList.add('hidden'), 500);
+                }
+
+                // Prepara o card antes de mostrar
+                resultTitle.innerText = result.name;
+                resultDesc.innerText = `"${result.desc}"`;
+
+                // Força o carregamento da imagem ou usa fallback visual
+                resultImg.style.backgroundImage = `url('${result.image}')`;
+
+                // Revelação Mágica
+                resultCard.classList.remove('hidden');
+                setTimeout(() => {
+                    resultCard.classList.remove('translate-y-8', 'opacity-0');
+                    resultCard.classList.add('translate-y-0', 'opacity-100');
+                    resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+
+            } catch (err) {
+                console.error("Erro na Alquimia:", err);
+                alert("Miga, tive um probleminha ao preparar seu drink. Tente novamente em um instante! ✨");
+            } finally {
+                aiBtn.disabled = false;
+                aiBtn.innerHTML = originalContent;
+            }
+
+        };
+
+        shareBtn.onclick = async () => {
+            if (currentResult) {
+                // For external URLs, shareImage fallback will handle download. 
+                // But for better mobile sharing, we provide the link.
+                const imgUrl = currentResult.image;
+                await shareImage(imgUrl, 'Miga - Minha Alquimia', `Olha só o drink "${currentResult.name}" que a Miga criou para mim!`, 'meu-drink-miga.png');
+            }
+        };
+    </script>
+</body>
+
+</html>
