@@ -5,7 +5,7 @@
  */
 
 const MODEL_IMAGE = 'gemini-2.0-flash-exp';
-const MODEL_TEXT = 'gemini-1.5-flash';
+const MODEL_TEXT = 'gemini-2.5-flash';
 
 function parseDataUrl(dataUrl) {
     if (!dataUrl || !dataUrl.includes(',')) return { mimeType: 'image/jpeg', data: '' };
