@@ -4,8 +4,8 @@
  * Falls back to Canvas simulation if no API key is configured.
  */
 
-const MODEL_IMAGE = 'gemini-2.0-flash';
-const MODEL_TEXT = 'gemini-2.5-flash';
+const MODEL_IMAGE = 'gemini-1.5-flash';
+const MODEL_TEXT = 'gemini-1.5-flash'; // Unificando para 1.5-flash para maior estabilidade de cota (15 RPM)
 
 function parseDataUrl(dataUrl) {
     if (!dataUrl || !dataUrl.includes(',')) return { mimeType: 'image/jpeg', data: '' };
@@ -30,10 +30,13 @@ async function callGemini(contents, systemPrompt = '', model = MODEL_IMAGE) {
     });
 
     if (response.error) {
-        console.error('❌ Edge Function Error:', response.error);
-        // Tenta extrair detalhes se for um erro de cota (429)
-        if (response.error.status === 429) {
-            throw new Error('Limite de uso atingido (Muitos pedidos seguidos). Por favor, aguarde 60 segundos e tente novamente, maravilhosa! ✨');
+        console.error('❌ Edge Function Error Detail:', response.error);
+
+        // Verifica status no objeto de erro do Supabase (pode estar em diferentes lugares dependendo da versão)
+        const status = response.error.status || response.error.context?.status || 0;
+
+        if (status === 429 || response.error.message?.includes('429')) {
+            throw new Error('Limite de uso atingido (Cota gratuita do Google). Por favor, aguarde 60 segundos e tente novamente, maravilhosa! ✨');
         }
         throw new Error(response.error.message || 'Erro na Edge Function do Supabase');
     }
@@ -291,6 +294,23 @@ export const NanoBananaAI = {
      * AI Trends: Gera tendências e dicas semanais (Gemini 2.5 Flash)
      */
     async getWeeklyTrends() {
+        // Tenta recuperar do cache para economizar cota (1 hora de validade)
+        const CACHE_KEY = 'miga_weekly_trends';
+        const CACHE_TIME_KEY = 'miga_weekly_trends_time';
+        const now = Date.now();
+        const oneHour = 3600 * 1000;
+
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
+            if (cached && cachedTime && (now - cachedTime < oneHour)) {
+                console.log('📦 NanoBanana: Usando tendências do cache local.');
+                return JSON.parse(cached);
+            }
+        } catch (e) {
+            console.warn('Erro ao ler cache de tendências:', e);
+        }
+
         if (!isKeyValid()) {
             return [
                 { categoria: 'Tendências', titulo: 'The Palette', descricao: 'Tons terrosos misturados com pêssego suave estão com tudo, querida.', imagem_keyword: 'wedding decoration peach and terracotta' },
@@ -299,7 +319,7 @@ export const NanoBananaAI = {
             ];
         }
 
-        console.log('📰 NanoBanana: Buscando tendências frescas via Gemini (2.5 Flash)...');
+        console.log('📰 NanoBanana: Buscando tendências frescas via Gemini...');
         try {
             const systemPrompt = `Você é a "Miga", a assessora de casamentos mais chique e requisitada do Brasil.
 Sua missão nesta requisição é fornecer 3 tendências de casamento atuais e elegantes para a noiva.
@@ -322,7 +342,16 @@ Você DEVE retornar a resposta EXCLUSIVAMENTE no seguinte formato JSON, sem nenh
             const userPrompt = "Miga, me conte 3 tendências maravilhosas para o meu casamento hoje?";
 
             const responseText = await callGemini([{ role: "user", parts: [{ text: userPrompt }] }], systemPrompt, MODEL_TEXT);
-            return responseText;
+
+            // Limpa o JSON e salva no cache
+            const jsonStr = responseText.replace(/```json|```/g, '').trim();
+            const data = JSON.parse(jsonStr);
+            const trends = data.tendencias;
+
+            localStorage.setItem(CACHE_KEY, JSON.stringify(trends));
+            localStorage.setItem(CACHE_TIME_KEY, now.toString());
+
+            return trends;
         } catch (error) {
             console.error('Trends API Error:', error);
             return [
